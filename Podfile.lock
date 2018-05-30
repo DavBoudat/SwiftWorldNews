@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.7.2)
+  - Freddy (3.0.3)
+  - Kingfisher (4.8.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - Freddy
+  - Kingfisher (~> 4.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Freddy
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+
+PODFILE CHECKSUM: ca0254bbf6e82ad6e1fa4301cb0afa616ad9ab3b
+
+COCOAPODS: 1.5.2
