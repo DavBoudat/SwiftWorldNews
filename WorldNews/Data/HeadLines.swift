@@ -20,7 +20,13 @@ struct HeadLines : JSONDecodable  {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssxxxxx"
-        publishedAt = try formatter.date(from :json.getString(at: "publishedAt"))!
+        let publishedAtStr = try json.getString(at: "publishedAt")
+        let publishedAt = formatter.date(from : publishedAtStr)
+        if publishedAt != nil {
+            self.publishedAt = publishedAt!
+        } else {
+            self.publishedAt = Date()
+        }
     }
     
     let author, urlToImage, description : String?

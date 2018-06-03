@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-2846" y="36"/>
         </scene>
-        <!--Sources List Controller-->
+        <!--Choix des sources-->
         <scene sceneID="u0A-21-eEj">
             <objects>
                 <tableViewController id="nxo-CF-34r" customClass="SourcesListController" customModule="WorldNews" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,10 +62,19 @@
                             <outlet property="delegate" destination="nxo-CF-34r" id="8ff-0O-AgC"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Choix des sources" id="YgR-Tw-cUL">
+                        <barButtonItem key="rightBarButtonItem" title="Sauvegarder" id="sBI-Fa-gpm">
+                            <connections>
+                                <action selector="SaveBtnClick:" destination="nxo-CF-34r" id="99t-NG-XOr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6yi-fi-IPz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-871" y="-752"/>
+            <point key="canvasLocation" x="-871" y="-756"/>
         </scene>
         <!--News List Controller-->
         <scene sceneID="CUK-jj-T8y">

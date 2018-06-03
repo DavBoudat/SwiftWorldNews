@@ -10,20 +10,46 @@ import UIKit
 import Alamofire
 import Freddy
 import Kingfisher
+import CoreData
 
 class NewsListController: UITableViewController {
     var headLines = [HeadLines]()
     let cellIdentifier = "NewsCell"
+    let defaultRequest = "https://newsapi.org/v2/top-headlines?country=fr&apiKey=054526229eff4971b79cd5d70c0a8880"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 300.0
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         updateData()
     }
-
+    
     func updateData() {
-        Alamofire.request("https://newsapi.org/v2/top-headlines?country=fr&apiKey=054526229eff4971b79cd5d70c0a8880").responseJSON { response in
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("Cannot use AppDelegate")
+        }
+        let context = appDelegate.persistentContainer.viewContext
+        let data = CoreDataHelper(context: context)
+        let sources = data.GetEnabledSources(predicate: NSPredicate(format: "isEnabled == %@", NSNumber(booleanLiteral: true)))
+        var urlRequest : String
+        
+        if sources.count != 0 {
+            urlRequest = "https://newsapi.org/v2/top-headlines?sources="
+            for (index, element) in sources.enumerated() {
+                urlRequest.append(element.id!)
+                if (index != sources.count - 1) {
+                    urlRequest.append(",")
+                }
+            }
+            urlRequest.append("&apiKey=054526229eff4971b79cd5d70c0a8880")
+        } else {
+           urlRequest = defaultRequest
+        }
+        
+        Alamofire.request(urlRequest).responseJSON { response in
             response.result.ifSuccess {
                 do {
                     self.headLines.removeAll();

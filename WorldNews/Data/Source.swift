@@ -9,13 +9,21 @@
 import Foundation
 import Freddy
 
-struct Source : JSONDecodable{
+class Source : JSONDecodable{
     
-    init(json: JSON) throws {
+    required init(json: JSON) throws {
         id = try json.getString(at: "id", alongPath: .nullBecomesNil)
         name = try json.getString(at :"name")
+        isEnabled = false
     }
     
-    let id : String?
-    let name : String
+    init(id : String, name : String, isEnabled : Bool) {
+        self.id = id
+        self.name = name
+        self.isEnabled = isEnabled
+    }
+    
+    var id : String?
+    var name : String
+    var isEnabled : Bool
 }
