@@ -16,7 +16,7 @@ class NewsListController: UITableViewController {
     var headLines = [HeadLines]()
     let cellIdentifier = "NewsCell"
     let defaultRequest = "https://newsapi.org/v2/top-headlines?country=fr&apiKey=054526229eff4971b79cd5d70c0a8880"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 300.0
@@ -46,7 +46,7 @@ class NewsListController: UITableViewController {
             }
             urlRequest.append("&apiKey=054526229eff4971b79cd5d70c0a8880")
         } else {
-           urlRequest = defaultRequest
+            urlRequest = defaultRequest
         }
         
         Alamofire.request(urlRequest).responseJSON { response in
@@ -66,38 +66,38 @@ class NewsListController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return headLines.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? NewsTableViewCell else {
             fatalError("The dequeued cell is not an instance of NewsCell.")
         }
-       if headLines[indexPath.row].urlToImage != nil {
+        if headLines[indexPath.row].urlToImage != nil {
             let url = URL(string: headLines[indexPath.row].urlToImage!)
             cell.illustration.kf.setImage(with: url)
-       } else {
+        } else {
             cell.illustration.isHidden = true
         }
         cell.title.text = headLines[indexPath.row].title
         cell.articleDescription.text = headLines[indexPath.row].description
-
+        
         return cell
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showArticle" {
             let articleView = segue.destination as! ArticleViewController
             articleView.urlString = self.headLines[tableView.indexPathForSelectedRow!.row].url
         }
     }
-
+    
 }

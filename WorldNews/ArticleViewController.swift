@@ -20,7 +20,7 @@ class ArticleViewController: UIViewController, WKUIDelegate {
         webView.uiDelegate = self
         view = webView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let articleUrl = URL(string: urlString!)
@@ -28,10 +28,10 @@ class ArticleViewController: UIViewController, WKUIDelegate {
         webView.load(request)
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
